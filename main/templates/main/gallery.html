@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+{% block title %}Gallery{% endblock %}
+{% block content %}
+{% load static %}
+
+    <div class="container">
+        <h1 class="text-center mt-4 page-header">Pictures</h1>
+        <div class="gallery">
+            {% if pictures %}
+                {% for picture in pictures %}
+                    <div class="pictures">
+                        <img src="{{ picture.image.url }}" alt="{{ picture.title }}">
+                        <p class="mt-2"><strong>{{ picture.title }}</strong></p>
+                        <p><strong>Created At:</strong> {{ picture.created_at }}  </p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No picture has been uploaded</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="text-center mt-4 page-header">Videos Gallery</h1>
+        <div class="gallery">
+            {% if videos %}
+                {% for video in videos %}
+                    <div class="video">
+                        <video controls class="img-fluid">
+                            <source src="{{ video.video.url }}" type="video/    mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <p class="mt-2"><strong>Title:</strong> {{ video.title }}</p>
+                        <p><strong>Created At:</strong> {{ video.created_at }}  </p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No videos to be displayed </p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

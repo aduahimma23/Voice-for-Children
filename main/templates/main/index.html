@@ -1,0 +1,174 @@
+{% extends 'main/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% load static %}
+
+
+<div id="carouselExampleDark" class="carousel carousel-dark slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="{{ home_header.first_image.url }}" class="d-block w-100" alt="">
+      <div class="carousel-caption d-none d-md-block">
+        <p>{{ home_header.short_content }}</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="{{ home_header.second_image.url }}" class="d-block w-100" alt="">
+      <div class="carousel-caption d-none d-md-block">
+        <p>{{ home_header.short_content_2 }}</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{{ home_header.third_image.url }}" class="d-block w-100" alt="">
+      <div class="carousel-caption d-none d-md-block">
+        <p>{{ home_header.short_content_3 }}</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class="hero-wrap" style="background-image: url('{{ main_home_contents.image.url }}');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-7 text-center">
+                <h1>{{ main_home_contents.short_title }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-counter " id="section-counter">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 ">
+        <div class="block-18 color-1">
+          <div class="text">
+            <span>Served Over</span>
+            <strong class="number" data-number="1432805">0</strong>
+            <span>Children in 190 countries in the world</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md ">
+        <div class="block-18 color-2">
+          <div class="text">
+            <h3 class="mb-4">Donate Money</h3>
+            <p>Even the all-powerful Pointing has no control about the blind texts.</p>
+            <p><a href="{% url 'main:donate' %}" class="btn btn-white px-3 py-2 mt-2">Donate Now</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md ">
+        <div class="block-18 color-3">
+          <div class="text">
+            <h3 class="mb-4">Be a Volunteer</h3>
+            <p>Even the all-powerful Pointing has no control about the blind texts.</p>
+            <p><a href="{% url 'main:register' %}" class="btn btn-white px-3 py-2 mt-2">Be A Volunteer</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <h1 class="text-center mt-4 page-header">Recent Pictures</h1>
+  <div class="home-image-css">
+    <div class="row">
+      <div class="col-xl-12 col-lg-8 col-sm-12 col-md-8">
+        <div class="home-image">
+          {% if pictures %}
+            {% for picture in pictures %}
+              <img src="{{ picuture.image.url }}" alt="">
+            {% endfor %}
+            <a href="{% url 'main:gallery' %}">See More</a>
+          {% else %}
+            <p>No recent picture </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h1 class="text-center mt-4 page-header">Recent Videso</h1>
+  <div class="gallery">
+    {% if videos %}
+      {% for video in videos %}
+        <div class="video">
+          <video controls class="img-fluid">
+            <source src="{{ video.video.url }}" type="video/    mp4">
+              Your browser does not support the video tag.
+          </video>
+          <p class="mt-2"><strong>Title:</strong> {{ video.title }}</p>
+        </div>
+        <a href="{% url 'main:gallery' %}">See More</a>
+      {% endfor %}
+    {% else %}
+        <p>No recent video </p>
+    {% endif %}
+  </div>
+</div>
+   
+<div class="container">
+  <h1 class="text-center mt-4 page-header">Recent Events</h1>
+  <div class="row">
+    <div class="col-md-4 d-flex ftco-animate">
+      <div class="blog-entry align-self-stretch">
+        <div class="text p-4 d-block">
+          {% if events %}
+            {% for event in events %}
+              <h3 class="heading mb-4">{{ event.title }}</h3>
+              <p class="time-loc">{{ event.date }}</p>
+              <p>{{ event.short_content }}</p>
+              <p><a href="{% url 'main:event_detail' event_id=event.id %}">readmore<i  class="ion-ios-arrow-forward"></i></a></p>
+            {% endfor %}
+          {% else %}
+            <p>No Event posted </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 ftco-animate">
+      {% if causes %}
+        {% for cause in cause %}
+          <div class="cause-entry">
+            <div class="text p-3 p-md-4">
+              <h3>{{ cause.title }}</h3>
+              <p>{{ cause.description }}</p>
+              <span class="donation-time mb-3 d-block">Last donation {{ cause.weeks }}  week (s) ago</span>
+              <div class="progress custom-progress-success">
+                <div class="progress-bar bg-primary" role="progressbar" style="width:   28%"  aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <span class="fund-raised d-block">{{ cause.amount_raised }} raised of {{    cause.amount_needed }} </span>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No Cause or Project </p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

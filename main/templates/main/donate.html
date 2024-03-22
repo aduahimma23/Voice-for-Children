@@ -1,0 +1,73 @@
+{% extends 'main/base.html' %}
+{% block title %}Donations{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="hero-wrap" style="background-image: url('images/bg_6.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-7 ftco-animate text-center">
+          <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'main:home' %}">Home</a></span> <span>Donate</span></p>
+          <h1 class="mb-3 bread">Donations</h1>
+        </div>
+      </div>
+    </div>
+</div>
+
+<section class="ftco-counter " id="section-counter">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-5 ">
+              <div class="block-18 color-1">
+                  <div class="text">
+                      <span>Served Over</span>
+                      <strong class="number" data-number="1432805">0</strong>
+                      <span>Children in 190 countries in the world</span>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md ">
+              <div class="block-18 color-2">
+                  <div class="text">
+                      <h3 class="mb-4">Donate Money</h3>
+                      <p>Even the all-powerful Pointing has no control about the blind texts.</p>
+                      <p><a href="{% url 'main:donate' %}" class="btn btn-white px-3 py-2 mt-2">Donate Now</a></p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md ">
+              <div class="block-18 color-3">
+                  <div class="text">
+                      <h3 class="mb-4">Be a Volunteer</h3>
+                      <p>Even the all-powerful Pointing has no control about the blind texts.</p>
+                      <p><a href="{% url 'main:register' %}" class="btn btn-white px-3 py-2 mt-2">Be A Volunteer</a></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<div class="row">
+    {% for donation in donations %}
+    <div class="col-lg-4 d-flex mb-sm-4">
+      <div class="staff">
+        <div class="d-flex mb-4">
+          <div class="img">
+            <img src="{{ donation.image.url }}" alt="{{ donation.name }}">
+          </div>
+          <div class="info ml-4">
+            <h3><a href="#">{{ donation.name }}</a></h3>
+            <span class="position">Donation Received</span>
+            <div class="text">
+              <p>Donated <span>${{ donation.amount_donated }}</span> for <a href="#">{{ donation.purpose }}</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'main/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="hero-wrap">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+      <div class="col-md-7">
+        <p class="breadcrumbs">
+          <span><a href="index.html">Home</a></span>
+          <span>Contact</span>
+        </p>
+        <h1 class="mb-3">Contact Us</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="contact-page-sec">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="fas fa-map-marked"></i>
+            </div>
+            <div class="contact-info-text">
+              <h2>address</h2>
+              <span>Voice of Children</span> 
+              <span>Ghana</span> 
+            </div>
+          </div>            
+        </div>          
+      </div>          
+      <div class="col-md-4">
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-info-text">
+              <h2>E-mail</h2>
+              <span>info@LoremIpsum.com</span> 
+              <span>yourmail@gmail.com</span>
+            </div>
+          </div>            
+        </div>                
+      </div>                
+      <div class="col-md-4">
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="contact-info-text">
+              <h2>office time</h2>
+              <span>Mon - Thu  9:00 am - 4.00 pm</span>
+              <span>Thu - Mon  10.00 pm - 5.00 pm</span>
+            </div>
+          </div>            
+        </div>          
+      </div>          
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="contact-page-form" method="post">
+          <h2>Get in Touch</h2> 
+          <form action="contact-mail.php" method="post">
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="single-input-field">
+                  {% csrf_token %}
+                  {{ form.as_p }}  
+                </div>                         
+              </div>
+              <div class="col-md-12 single-input-fieldsbtn"> <!-- Modified the column width to 12 -->
+                <input type="submit" value="Send Now" class="btn"/>
+              </div>
+            </div>
+          </form>   
+        </div>      
+      </div>      
+    </div>
+
+  </div>
+</section>
+{% endblock %}

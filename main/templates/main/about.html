@@ -1,0 +1,72 @@
+{% extends 'main/base.html' %}
+{% block title %}About{% endblock %}
+{% block content %}
+{% load static %}
+
+  <div class="owl-carousel-wrapper">
+    <div class="box-92819">
+      <h1 class="text-white mb-3">About Us</h1>
+      <h2 class="lead text-white">Voice of Children</h3>
+    </div>
+      <div class="ftco-cover-1 overlay" style="background-image: url('images/hero_1.jpg');"></div>
+  </div>
+    
+  <div class="site-section">
+    <div class="container">
+      {% for about in aboutpage %}
+      <div class="row">
+        <div class="col-md-5 ml-auto">
+          <h3 class="text-cursive mb-4">{{ about.title }}</h3>
+          <p>{{ about.content }}</p>
+          <p> For any query
+            <a href="{% url 'main:contact' %}" class="btn btn-primary rounded-0 px-4">Contact Us</a>
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+    
+  <div class="site-section">
+    <div class="container">
+      <div class="row mb-5 justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+          <h2 class="text-cursive">Our Team</h2>
+        </div>
+      </div>
+      <div class="row align-items-stretch">
+        <div class="col-lg-4 col-md-6 mb-5">
+          <div class="post-entry-1 h-100 bg-white text-center">
+            {% for team_member in aboutteam %}
+            <a href="#" class="d-inline-block">
+              <img src="{{ team_member.image.url }}" alt="{{ team_member.name }} image not found"
+                class="img-fluid">
+            </a>
+            <div class="post-entry-1-contents">
+              <span class="meta">{{ team_member.position }}</span>
+              <h2>{{ team_member.title }}. {{ team_member.name }}</h2>
+              <p>{{ team_member.content }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="{{ mission.image.url }}" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-md-5 ml-auto">
+          <h3 class="text-cursive mb-4">Our Mission</h3>
+          <p>{{ mission.content }}</p>
+          <p>To know About us! <a href="{% url 'main:contact' %}" class="btn btn-primary rounded-0 px-4">Contact Us</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

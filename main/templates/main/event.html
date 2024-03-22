@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+{% block title %}Events{% endblock %}
+{% block content %}
+{% load static %}
+
+  <section class="background-image" style="background-image: url('{{ events.event_background_image.url }}');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 ftco-animate text-center">
+          <h1 class=" container mb-3 bread page-header">Events</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+    
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-4 d-flex ftco-animate">
+          <div class="blog-entry align-self-stretch">
+            <!-- <a href="blog-single.html" class="block-20" style="background-image: url('images/event-1.jpg');"></a> -->
+
+            <div class="text p-4 d-block">
+              {% for event in events %}
+                <h3 class="heading mb-4">{{ event.title }}</h3>
+                <p class="time-loc">{{ event.date }}</p>
+                <p>{{ event.short_content }}</p>
+                <p><a href="{% url 'main:event_detail' event_id=event.id %}">read more<i class="ion-ios-arrow-forward"></i></a></p>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

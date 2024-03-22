@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% block title %}Voluntee{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-center align-items-center flex-column">
+      <h3>Voluntee to save a child</h3>
+      <p class="text-center">God Bless you</p>
+      <p class="text-center"></p>
+      <div class="donate">
+        <div class="row">
+          <div class="form-container">
+            <form method="post" class="donation-form">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="btn btn-primary">Join</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
