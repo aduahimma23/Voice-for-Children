@@ -67,9 +67,13 @@ def register_view(request):
 def about_view(request):
     aboutpage = AboutPage.objects.all()
     aboutteam = AboutTeam.objects.all()
+    
+    return render(request, 'main/about.html', {'aboutpage': aboutpage, 'aboutteam': aboutteam})
+
+def mission_view(request):
     mission = MissionPage.objects.first()
 
-    return render(request, 'main/about.html', {'aboutpage': aboutpage, 'aboutteam': aboutteam, 'mission': mission })
+    return render(request, 'main/mission.html', {'mission': mission})
 
 def gallery_view(request):
     pictures = PicturesGallery.objects.all()
