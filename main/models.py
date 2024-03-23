@@ -1,4 +1,3 @@
-from typing import Iterable
 from django.db import models
 from django.utils import timezone
 
@@ -22,7 +21,7 @@ class HomeHeaderImage(models.Model):
     uploaded_by = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return self.created_at, self.uploaded_by
+        return self.uploaded_by, str(self.created_at)
 
 class UserRegistration(models.Model):
     TITLE_CHOICES = [
@@ -59,12 +58,12 @@ class Donation(models.Model):
     phone_number = models.CharField(max_length=15)
     donation_amount = models.DecimalField(max_digits=6, decimal_places=2)
     payment_method = models.CharField(blank=False, max_length=10, choices=online_or_cash_choices, default='online')
-    payment_link = models.URLField(blank=True, null=True)
+    payment_link = models.BooleanField(default=False)
     donation_date = models.DateField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
         if self.payment_method == 'online':
-            self.payment_link = ''
+            self.payment_link
         else:
             self.payment_link = None
         super().save(*args, **kwargs)
@@ -187,6 +186,7 @@ class AboutTeam(models.Model):
     title = models.CharField(max_length=20, blank=False)
     name = models.CharField(max_length=100, unique=True, blank=False)
     position = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='about_team_images', default='adebayo.png')
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
