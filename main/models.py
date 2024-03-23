@@ -71,46 +71,32 @@ class Donation(models.Model):
 
     def __str__(self):
         return f'Donnor Name {self.title}. {self.full_name} Amount sent: {self.donation_amount}'
+    
+
+class Region(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
+
+class AbuseType(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
 
 
 class ReportAbuse(models.Model):
-    add_new_region = models.CharField(max_length=50, default='add new')
-    add_new_abuse_type = models.CharField(max_length=100, default='add new')
-    
-    ABUSE_CHOICES = [
-        ('physical', 'Physical Abuse'),
-        ('emotional', 'Emotional Abuse'),
-        ('sexual', 'Sexual Abuse'),
-        ('neglect', 'Neglect'),
-    ]
-    
-    REGION_CHOICES = [
-        ('ashanti', 'Ashanti Region'),
-        ('brong-ahafo', 'Brong-Ahafo Region'),
-        ('central', 'Central Region'),
-    ]
     name = models.CharField(max_length=255)
     email = models.EmailField()
     phone_number = models.CharField(max_length=15)
     child_name = models.CharField(max_length=255, blank=False)
     age = models.IntegerField(blank=False)
-    abuse_type = models.CharField(max_length=100, choices=ABUSE_CHOICES, blank=False)
-    region = models.CharField(max_length=50, choices=REGION_CHOICES)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE)
+    abuse_type = models.ForeignKey(AbuseType, on_delete=models.CASCADE)
     town = models.CharField(max_length=100)
     support_needed = models.TextField(blank=False)
     sub_date = models.DateField(auto_now_add=True)
-
-    def set_region(self, *args, **kwargs):
-        if self.add_new_region:
-            self.region += self.add_new_region
-        
-        return super.save(self, *args, **kwargs)
-    
-    def set_abuse(self, *args, **kwargs):
-        if self.add_new_abuse_type:
-            self.abuse_type += self.add_new_abuse_type
-
-        return super.save(self, *args, **kwargs)
 
     def __str__(self):
         return f"Reporter Name {self.name}\n Date Submitted {self.sub_date}"
