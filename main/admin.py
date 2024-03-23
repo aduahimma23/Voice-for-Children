@@ -17,6 +17,12 @@ class UserRegistrationAdmin(admin.ModelAdmin):
 
 admin.site.register(UserRegistration, UserRegistrationAdmin)
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('full_text', 'sent_at')
+    list_filter = ('full_text', 'sent_at')
+
+admin.site.register(Comment, CommentAdmin)
+
 
 class DonationAdmin(admin.ModelAdmin):
     list_display = ('title', 'full_name', 'donation_amount')
@@ -38,3 +44,9 @@ class EventAdmin(admin.ModelAdmin):
     search_fields = ('title', '')
 
 admin.site.register(Event, EventAdmin)
+
+class ReportAbuseAdmin(admin.ModelAdmin):
+    list_display = ('child_name', 'sub_date')
+    readonly_fields = ('sub_date',)
+
+admin.site.register(ReportAbuse, ReportAbuseAdmin)

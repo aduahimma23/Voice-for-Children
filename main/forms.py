@@ -1,6 +1,6 @@
 from typing import Any
 from django import forms
-from .models import Donation, ChildAbuseReporter, Contact, UserRegistration
+from .models import Donation, ReportAbuse, Contact, UserRegistration
 
 class DonationForm(forms.ModelForm):
     class Meta:
@@ -9,8 +9,12 @@ class DonationForm(forms.ModelForm):
 
 class ChildAbuseReporterForm(forms.ModelForm):
     class Meta:
-        model = ChildAbuseReporter
-        fields = '__all__'
+        model = ReportAbuse
+        exclude = ['add_new_region', 'add_new_abuse_type']
+
+        def clean(self):
+            clean_data = super.clean()
+            
 
 
 class ContactForm(forms.ModelForm):

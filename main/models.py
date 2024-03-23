@@ -73,7 +73,10 @@ class Donation(models.Model):
         return f'Donnor Name {self.title}. {self.full_name} Amount sent: {self.donation_amount}'
 
 
-class ChildAbuseReporter(models.Model):
+class ReportAbuse(models.Model):
+    add_new_region = models.CharField(max_length=50, default='add new')
+    add_new_abuse_type = models.CharField(max_length=100, default='add new')
+    
     ABUSE_CHOICES = [
         ('physical', 'Physical Abuse'),
         ('emotional', 'Emotional Abuse'),
@@ -97,6 +100,18 @@ class ChildAbuseReporter(models.Model):
     support_needed = models.TextField(blank=False)
     sub_date = models.DateField(auto_now_add=True)
 
+    def set_region(self, *args, **kwargs):
+        if self.add_new_region:
+            self.region += self.add_new_region
+        
+        return super.save(self, *args, **kwargs)
+    
+    def set_abuse(self, *args, **kwargs):
+        if self.add_new_abuse_type:
+            self.abuse_type += self.add_new_abuse_type
+
+        return super.save(self, *args, **kwargs)
+
     def __str__(self):
         return f"Reporter Name {self.name}\n Date Submitted {self.sub_date}"
     
@@ -106,6 +121,15 @@ class Contact(models.Model):
     email = models.EmailField()
     phone_number = models.IntegerField(blank=False)
     content = models.TextField(max_length=500)
+
+
+class Comment(models.Model):
+    contct = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    full_text = models.TextField()
+    sent_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"Feed back from: {self.contct.name}, Email: {self.contct.email}"
 
 
 class Donations(models.Model):
