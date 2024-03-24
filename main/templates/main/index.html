@@ -11,19 +11,19 @@
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="10000">
+    <div class="carousel-item active" data-bs-interval="3000">
       <img src="{{ home_header.first_image.url }}" class="d-block w-100" alt="">
       <div class="carousel-caption d-none d-md-block">
         <p>{{ home_header.short_content }}</p>
       </div>
     </div>
-    <div class="carousel-item" data-bs-interval="2000">
+    <div class="carousel-item" data-bs-interval="3000">
       <img src="{{ home_header.second_image.url }}" class="d-block w-100" alt="">
       <div class="carousel-caption d-none d-md-block">
         <p>{{ home_header.short_content_2 }}</p>
       </div>
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item" data-bs-interval="3000">
       <img src="{{ home_header.third_image.url }}" class="d-block w-100" alt="">
       <div class="carousel-caption d-none d-md-block">
         <p>{{ home_header.short_content_3 }}</p>
@@ -106,7 +106,7 @@
 </div>
 
 <div class="container">
-  <h1 class="text-center mt-4 page-header">Recent Videso</h1>
+  <h1 class="text-center mt-4 page-header">Recent Videos</h1>
   <div class="gallery">
     {% if videos %}
       {% for video in videos %}

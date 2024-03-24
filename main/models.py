@@ -10,6 +10,7 @@ class HomePage(models.Model):
     def __str__(self) -> str:
         return self.uploaded_by
 
+
 class HomeHeaderImage(models.Model):
     first_image = models.ImageField(upload_to='home_header', blank=False)
     short_content = models.CharField(max_length=100, blank=False)
@@ -20,8 +21,6 @@ class HomeHeaderImage(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     uploaded_by = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self) -> str:
-        return self.uploaded_by, str(self.created_at)
 
 class UserRegistration(models.Model):
     TITLE_CHOICES = [
