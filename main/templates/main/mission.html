@@ -3,16 +3,27 @@
 {% block content %}
 {% load static %}
 
-    <div class="site-section">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8 ml-auto">
-              <h3 class="text-cursive mb-4">Our Mission</h3>
-              <p>{{ mission.content }}</p>
-              <p>To know About us! <a href="{% url 'main:contact' %}" class="btn btn-primary rounded-0 px-4">Contact Us</a></p>
-            </div>
-          </div>
-        </div>
+<div class="hero-wrap">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+      <div class="col-md-7">
+        <h1 class="mb-3">Mission</h1>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto">
+          <h3 class="text-cursive mb-4">Mission Voice for the Children</h3>
+          <p>{{ mission.content }}</p>
+          <p>For More Infomation About us! <a href="{% url 'main:contact' %}" class="btn btn-primary rounded-0 px-4">Contact Us</a></p>
+        </div>
+      </div>
+    </div>
+</div>
 
 {% endblock %}

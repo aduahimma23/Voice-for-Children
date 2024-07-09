@@ -8,9 +8,6 @@
   <div class="container">
     <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
       <div class="col-md-7">
-        <p class="breadcrumbs">
-          <span>Contact</span>
-        </p>
         <h1 class="mb-3">Contact Us</h1>
       </div>
     </div>
@@ -28,8 +25,8 @@
             </div>
             <div class="contact-info-text">
               <h2>address</h2>
-              <span>Voice of Children</span> 
-              <span>Ghana</span> 
+              <span>{{ contact_info.address }}</span> 
+              <span>{{ contact_info.city }}</span> 
             </div>
           </div>            
         </div>          
@@ -42,8 +39,8 @@
             </div>
             <div class="contact-info-text">
               <h2>E-mail</h2>
-              <span>info@LoremIpsum.com</span> 
-              <span>yourmail@gmail.com</span>
+              <span>{{ contact_info.email1 }}</span> 
+              <span>{{ contact_info.email2 }}</span>
             </div>
           </div>            
         </div>                
@@ -64,26 +61,47 @@
       </div>          
     </div>
 
-    <div class="row">
-      <div class="col-md-8">
-        <div class="contact-page-form" method="post">
-          <h2>Get in Touch</h2> 
-          <form action="contact-mail.php" method="post">
-            <div class="row">
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="single-input-field">
-                  {% csrf_token %}
-                  {{ form.as_p }}  
-                </div>                         
+    <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-md-8">
+              <div class="contact-page-form">
+                  <h2>Get in Touch</h2>
+                  <form method="post">
+                      {% csrf_token %}
+                      <div class="form-group row">
+                          <label for="{{ form.name.id_for_label }}" class="col-sm-4 col-form-label text-right">Name</label>
+                          <div class="col-sm-8">
+                              {{ form.name }}
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="{{ form.email.id_for_label }}" class="col-sm-4 col-form-label text-right">Email</label>
+                          <div class="col-sm-8">
+                              {{ form.email }}
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="{{ form.phone_number.id_for_label }}" class="col-sm-4 col-form-label text-right">Phone Number</label>
+                          <div class="col-sm-8">
+                              {{ form.phone_number }}
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="{{ form.content.id_for_label }}" class="col-sm-4 col-form-label text-right">Content</label>
+                          <div class="col-sm-8">
+                              {{ form.content }}
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-sm-12 text-center">
+                              <button type="submit" class="btn btn-primary">Send Now</button>
+                          </div>
+                      </div>
+                  </form>
               </div>
-              <div class="col-md-12 single-input-fieldsbtn"> <!-- Modified the column width to 12 -->
-                <input type="submit" value="Send Now" class="btn"/>
-              </div>
-            </div>
-          </form>   
-        </div>      
-      </div>      
-    </div>
+          </div>
+      </div>
+  </div>
 
   </div>
 </section>

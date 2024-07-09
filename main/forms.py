@@ -22,6 +22,14 @@ class ContactForm(forms.ModelForm):
         model = Contact
         fields = ['name', 'email', 'phone_number', 'content']
 
+        widget = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+        }
+
+
     def clean(self) -> dict[str, Any]:
         clean_data = super().clean()
         name = clean_data.get('name')

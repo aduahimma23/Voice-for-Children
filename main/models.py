@@ -107,6 +107,17 @@ class Contact(models.Model):
     phone_number = models.IntegerField(blank=False)
     content = models.TextField(max_length=500)
 
+    def __str__(self) -> str:
+        return self.name
+    
+class ChangeContactInfo(models.Model):
+    email1 = models.EmailField()
+    email2 = models.EmailField()
+    address = models.CharField(max_length=156, blank=False)
+    city = models.CharField(max_length=155, blank=False)
+
+    def __str__(self):
+        return self.email1
 
 class Comment(models.Model):
     contct = models.ForeignKey(Contact, on_delete=models.CASCADE)

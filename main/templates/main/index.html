@@ -40,17 +40,6 @@
   </button>
 </div>
 
-<div class="hero-wrap" style="background-image: url('{{ main_home_contents.image.url }}');">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-7 text-center">
-                <h1>{{ main_home_contents.short_title }}</h1>
-            </div>
-        </div>
-    </div>
-</div>
-
 <section class="ftco-counter " id="section-counter">
   <div class="container">
     <div class="row">
@@ -88,20 +77,24 @@
 <div class="container">
   <h1 class="text-center mt-4 page-header">Recent Pictures</h1>
   <div class="home-image-css">
-    <div class="row">
-      <div class="col-xl-12 col-lg-8 col-sm-12 col-md-8">
-        <div class="home-image">
-          {% if pictures %}
-            {% for picture in pictures %}
-              <img src="{{ picuture.image.url }}" alt="">
-            {% endfor %}
-            <a href="{% url 'main:gallery' %}">See More</a>
-          {% else %}
-            <p>No recent picture </p>
-          {% endif %}
-        </div>
+      <div class="row">
+          <div class="col-xl-12 col-lg-8 col-sm-12 col-md-8">
+              <div class="home-image">
+                  {% if pictures %}
+                      <div class="d-flex flex-column align-items-center">
+                          {% for picture in pictures %}
+                              <img src="{{ picture.image.url }}" alt="" class="img-fluid mb-2">
+                          {% endfor %}
+                      </div>
+                      <div class="see-more-link">
+                          <a href="{% url 'main:gallery' %}" class="btn btn-primary">See More</a>
+                      </div>
+                  {% else %}
+                      <p class="text-center">No recent pictures</p>
+                  {% endif %}
+              </div>
+          </div>
       </div>
-    </div>
   </div>
 </div>
 
